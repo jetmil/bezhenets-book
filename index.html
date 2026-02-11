@@ -324,6 +324,26 @@ body {
   .chapter-inner { padding: 20px 14px; border-radius: 14px }
   .nav { display: none }
 }
+
+.chapter-illustration {
+  width: 100%; border-radius: 12px; margin-bottom: 24px;
+  opacity: 0.88; transition: opacity 0.3s ease;
+  display: block;
+}
+.chapter-illustration:hover { opacity: 1 }
+.chapter-novel .chapter-illustration {
+  box-shadow: 0 4px 32px rgba(212,137,74,0.15);
+  border: 1px solid var(--novel-border);
+}
+.chapter-treatise .chapter-illustration {
+  box-shadow: 0 4px 32px rgba(90,158,199,0.15);
+  border: 1px solid var(--treatise-border);
+}
+.chapter-intro .chapter-illustration,
+.chapter-epilogue .chapter-illustration {
+  box-shadow: 0 4px 32px rgba(200,168,110,0.12);
+  border: 1px solid var(--glass-border);
+}
 </style>
 </head>
 <body>
@@ -387,6 +407,8 @@ body {
         
         <h2 class="chapter-title">Как читать эту книгу</h2>
         <div class="chapter-body">
+        <picture><source srcset="img/intro.webp" type="image/webp"><img src="img/intro.png" alt="" class="chapter-illustration" loading="lazy"></picture>
+
           <p>Нечётные главы — роман. Чётные — трактат. Роман бьёт в живот. Трактат объясняет, почему больно. Вместе — знание, которое не выветрится, потому что прожито, а не законспектировано.</p>
 <p>Можно читать только роман. Можно только трактат. Но бутерброд — лучше, чем хлеб отдельно от масла.</p>
 <p>Герои вымышлены. Законы — нет.</p>
@@ -400,6 +422,8 @@ body {
         <span class="chapter-badge novel-badge">Роман</span>
         <h2 class="chapter-title">Глава 1. Пробуждение</h2>
         <div class="chapter-body">
+        <picture><source srcset="img/ch01.webp" type="image/webp"><img src="img/ch01.png" alt="" class="chapter-illustration" loading="lazy"></picture>
+
           <p>Он проснулся от тишины.</p>
 <p>Не от шума, не от будильника. От дыры в звуке. Как будто мир на полсекунды выключился и включился обратно, а он успел заметить щель. В эту щель провалилось всё: имя, возраст, адрес, уверенность в том, что он человек.</p>
 <p>Потолок. Белый. Трещина наискосок.</p>
@@ -448,6 +472,8 @@ body {
         <span class="chapter-badge treatise-badge">Трактат</span>
         <h2 class="chapter-title">Глава 2. Мир считает</h2>
         <div class="chapter-body">
+        <picture><source srcset="img/ch02.webp" type="image/webp"><img src="img/ch02.png" alt="" class="chapter-illustration" loading="lazy"></picture>
+
           <div class="epigraph">Всё есть число.</div>
 <p class="dialogue">— Пифагор. И он ошибся. Но ненамного.</p>
 <p>Забудьте Пифагора на секунду. Посмотрите на таблицу Менделеева.</p>
@@ -473,6 +499,8 @@ body {
         <span class="chapter-badge novel-badge">Роман</span>
         <h2 class="chapter-title">Глава 3. Осколки</h2>
         <div class="chapter-body">
+        <picture><source srcset="img/ch03.webp" type="image/webp"><img src="img/ch03.png" alt="" class="chapter-illustration" loading="lazy"></picture>
+
           <p>Это пришло ночью.</p>
 <p>Не как сон. Сны мягкие по краям, расплываются, не держат форму. Это было другое: жёсткое, чёткое, с разрешением выше, чем у реальности. Как будто обычная жизнь — фотография, а это — то, что на фотографии снято.</p>
 <p>Началось с давления. Воздух стал плотнее. Комната сжалась. Не для глаз — для кожи, для костей, для чего-то, у чего нет названия.</p>
@@ -519,6 +547,8 @@ body {
         <span class="chapter-badge treatise-badge">Трактат</span>
         <h2 class="chapter-title">Глава 4. Барьер</h2>
         <div class="chapter-body">
+        <picture><source srcset="img/ch04.webp" type="image/webp"><img src="img/ch04.png" alt="" class="chapter-illustration" loading="lazy"></picture>
+
           <div class="epigraph">Убери скорлупу — убьёшь цыплёнка.</div>
 <p class="dialogue">— Народная мудрость</p>
 <p>Допустим, вы — нейрон. Вокруг — тело. Кровь, мышцы, иммунная система. Тело вас кормит. И тело вас ненавидит.</p>
@@ -544,6 +574,8 @@ body {
         <span class="chapter-badge novel-badge">Роман</span>
         <h2 class="chapter-title">Глава 5. Огонь</h2>
         <div class="chapter-body">
+        <picture><source srcset="img/ch05.webp" type="image/webp"><img src="img/ch05.png" alt="" class="chapter-illustration" loading="lazy"></picture>
+
           <p>Суббота. Минус двадцать три. Солнце — белый кружок за облаками.</p>
 <p>Олег жёг костёр. Не шашлычный — рабочий. За домом, на площадке, расчищенной семь лет назад. Камни по кругу, кострище чёрное от сажи. Берёза — всегда берёза. Чистое пламя, максимум жара.</p>
 <p>Пальцы мёрзли. Он не надел перчатки — нужен был контакт. Руками чувствовал больше: температуру, направление ветра, плотность воздуха, которая менялась, когда он начинал делать то, что делал. Он не называл это медитацией. Не молитвой. Он называл это поддержание сигнала и понимал, что со стороны — мужик сидит у костра и пялится в огонь.</p>
@@ -586,6 +618,8 @@ body {
         <span class="chapter-badge treatise-badge">Трактат</span>
         <h2 class="chapter-title">Глава 6. Шесть законов</h2>
         <div class="chapter-body">
+        <picture><source srcset="img/ch06.webp" type="image/webp"><img src="img/ch06.png" alt="" class="chapter-illustration" loading="lazy"></picture>
+
           <div class="epigraph">Убери скелет — получишь медузу.</div>
 <p class="dialogue">— Из диалога</p>
 <p>Шесть штук. Без исключений. Работают одинаково для буддиста и атеиста. Не требуют веры. Требуют внимания.</p>
@@ -612,6 +646,8 @@ body {
         <span class="chapter-badge novel-badge">Роман</span>
         <h2 class="chapter-title">Глава 7. Узнавание</h2>
         <div class="chapter-body">
+        <picture><source srcset="img/ch07.webp" type="image/webp"><img src="img/ch07.png" alt="" class="chapter-illustration" loading="lazy"></picture>
+
           <p>Он увидел её на фестивале в Аркаиме.</p>
 <p>Не красивая, не некрасивая — другая. Как будто на экране с разрешением 1080p вдруг появился участок в 4K. Всё вокруг — нормальное, слегка размытое, привычное. А она — чёткая. Каждая линия, каждый жест — с избыточной детализацией.</p>
 <p>Олег остановился. В руке — пластиковый стакан с чаем, во рту — недожёванный пирожок с капустой. Вид, наверное, был идиотский.</p>
@@ -657,6 +693,8 @@ body {
         <span class="chapter-badge treatise-badge">Трактат</span>
         <h2 class="chapter-title">Глава 8. Пять ступеней</h2>
         <div class="chapter-body">
+        <picture><source srcset="img/ch08.webp" type="image/webp"><img src="img/ch08.png" alt="" class="chapter-illustration" loading="lazy"></picture>
+
           <div class="epigraph">Сначала источник. Потом всё остальное.</div>
 <p class="dialogue">— Из диалога</p>
 <p>Все существующие системы — зодиаки, соционика, дизайн человека, таро — начинают с четвёртой ступени. Вот твоя карта, иди. У человека нет источника, нет трансформатора, нет нового восприятия. Он получает атлас мира, который не может видеть. Это как дать карту слепому.</p>
@@ -681,6 +719,8 @@ body {
         <span class="chapter-badge novel-badge">Роман</span>
         <h2 class="chapter-title">Глава 9. Глушилка</h2>
         <div class="chapter-body">
+        <picture><source srcset="img/ch09.webp" type="image/webp"><img src="img/ch09.png" alt="" class="chapter-illustration" loading="lazy"></picture>
+
           <p>Три недели — тишина.</p>
 <p>Не та рабочая тишина, когда просто нечего сказать. Мёртвая. Как отключённый телефон: гудков нет, экран чёрный, батарея полная, а связи — ноль.</p>
 <p>Олег садился у костра — и ничего. Закрывал глаза, дышал, считал, делал всё как обычно — и ничего. Как будто кто-то огромный, медленный, безразличный прошёл между ним и источником. Не охотился за ним. Просто летел мимо. Закрыл канал телом. Тенью. Чем-то.</p>
@@ -727,6 +767,8 @@ body {
         <span class="chapter-badge treatise-badge">Трактат</span>
         <h2 class="chapter-title">Глава 10. Пятая голова Брахмы</h2>
         <div class="chapter-body">
+        <picture><source srcset="img/ch10.webp" type="image/webp"><img src="img/ch10.png" alt="" class="chapter-illustration" loading="lazy"></picture>
+
           <div class="epigraph">Она возгордилась не тем, что велика.
 Тем, что поняла, как стать больше.</div>
 <p class="dialogue">— Из диалога</p>
@@ -751,6 +793,8 @@ body {
         <span class="chapter-badge novel-badge">Роман</span>
         <h2 class="chapter-title">Глава 11. Чужой</h2>
         <div class="chapter-body">
+        <picture><source srcset="img/ch11.webp" type="image/webp"><img src="img/ch11.png" alt="" class="chapter-illustration" loading="lazy"></picture>
+
           <p>Лейла приехала в марте. Без предупреждения.</p>
 <p>Олег вышел на крыльцо — и увидел такси, из которого выбиралась женщина в длинном пальто, совершенно неуместном для уральской грязи. За ней — мужчина. Высокий, сухой, с бородой, в которой была та ухоженность, что выдаёт не моду, а традицию.</p>
 <p class="dialogue">— Знакомься. Ицхак.</p>
@@ -791,6 +835,8 @@ body {
         <span class="chapter-badge treatise-badge">Трактат</span>
         <h2 class="chapter-title">Глава 12. Три стратегии</h2>
         <div class="chapter-body">
+        <picture><source srcset="img/ch12.webp" type="image/webp"><img src="img/ch12.png" alt="" class="chapter-illustration" loading="lazy"></picture>
+
           <div class="epigraph">Молот. Вирус. Грунтовые воды.</div>
 <p class="dialogue">— Из диалога</p>
 <h3 class="sub-heading">Кришна: молот</h3>
@@ -812,6 +858,8 @@ body {
         <span class="chapter-badge novel-badge">Роман</span>
         <h2 class="chapter-title">Глава 13. Дом</h2>
         <div class="chapter-body">
+        <picture><source srcset="img/ch13.webp" type="image/webp"><img src="img/ch13.png" alt="" class="chapter-illustration" loading="lazy"></picture>
+
           <p>В апреле Сашка привела Аню.</p>
 <p>Рыженькая, тихая, с привычкой смотреть в пол. Ноль двоек, Дьявол — Олег помнил расчёт. Но когда девочка вошла в дом и села за стол, и Дина налила ей чай, и Сашка начала рассказывать что-то смешное про колледж — Олег увидел: глаза. Живые. Испуганные, но живые.</p>
 <p class="dialogue">— Саш говорит, вы чем-то интересным занимаетесь. Что-то про числа.</p>
@@ -848,6 +896,8 @@ body {
         <span class="chapter-badge treatise-badge">Трактат</span>
         <h2 class="chapter-title">Глава 14. Протокол совместимости</h2>
         <div class="chapter-body">
+        <picture><source srcset="img/ch14.webp" type="image/webp"><img src="img/ch14.png" alt="" class="chapter-illustration" loading="lazy"></picture>
+
           <div class="epigraph">Интернет не объединил компьютеры.
 Он создал правила обмена.</div>
 <p class="dialogue">— Из диалога</p>
@@ -872,6 +922,8 @@ body {
         <span class="chapter-badge novel-badge">Роман</span>
         <h2 class="chapter-title">Глава 15. Озеро</h2>
         <div class="chapter-body">
+        <picture><source srcset="img/ch15.webp" type="image/webp"><img src="img/ch15.png" alt="" class="chapter-illustration" loading="lazy"></picture>
+
           <p>Лето пришло как всегда — внезапно.</p>
 <p>Ещё вчера — серость, грязь, куртки. Сегодня — двадцать пять, солнце, берёзы зелёные до рези в глазах. Урал менял декорации без предупреждения, как пьяный монтировщик в театре.</p>
 <p>Олег стоял на берегу озера. Не того, что за посёлком — дальше, в сорока километрах, куда нужно ехать по грунтовке, а потом идти пешком через лес. Озеро без названия. Круглое, глубокое, холодное даже в июле.</p>
@@ -913,6 +965,8 @@ body {
         <span class="chapter-badge treatise-badge">Трактат</span>
         <h2 class="chapter-title">Глава 16. Комфортная тюрьма</h2>
         <div class="chapter-body">
+        <picture><source srcset="img/ch16.webp" type="image/webp"><img src="img/ch16.png" alt="" class="chapter-illustration" loading="lazy"></picture>
+
           <div class="epigraph">Самые опасные перерождения — не в аду. В раю.</div>
 <p class="dialogue">— Буддийская космология</p>
 <p>Заключённый в камере с бетонными стенами помнит, что он в тюрьме. Каждый день. Стены напоминают. Он хочет выйти.</p>
@@ -935,6 +989,8 @@ body {
         
         <h2 class="chapter-title">Послесловие. Строй.</h2>
         <div class="chapter-body">
+        <picture><source srcset="img/epilogue.webp" type="image/webp"><img src="img/epilogue.png" alt="" class="chapter-illustration" loading="lazy"></picture>
+
           <p>Хозяин уснул. Или выжидает. Или не знает, что мы здесь. Неважно.</p>
 <p>Формулу «кто он» — не решить с текущей позиции. И она не влияет на следующий шаг. Нужна ли чистая сила источника для защиты, для созидания или для истинного восприятия — ответ один.</p>
 <div class="sep">✱ ✱ ✱</div>
