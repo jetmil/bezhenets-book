@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>БЕЖЕНЕЦ — Микрокосм в дряхлой биологии</title>
+<meta name="description" content="Роман-трактат. Нечётные главы бьют в живот. Чётные объясняют, почему больно.">
+<meta property="og:title" content="БЕЖЕНЕЦ — Трактат пятой головы">
+<meta property="og:description" content="Освоение энергии эфира через 108 понижающих частот">
+<meta name="robots" content="noindex, nofollow">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&family=Cinzel:wght@400;600;700&display=swap');
+
+:root {
+  --bg: #07070e;
+  --bg2: #0c0c18;
+  --bg3: #111122;
+  --novel-warm: #d4894a;
+  --novel-glow: rgba(212,137,74,0.12);
+  --novel-border: rgba(212,137,74,0.2);
+  --treatise-cool: #5a9ec7;
+  --treatise-glow: rgba(90,158,199,0.12);
+  --treatise-border: rgba(90,158,199,0.2);
+  --gold: #c8a86e;
+  --gold-dim: #8a7044;
+  --fire: #e85d3a;
+  --text: #ddd8d0;
+  --text-dim: #7a7068;
+  --text-bright: #f0ece6;
+  --glass: rgba(255,255,255,0.03);
+  --glass-border: rgba(255,255,255,0.06);
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-title: 'Cinzel', 'Cormorant Garamond', serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+}
+
+* { margin:0; padding:0; box-sizing:border-box }
+html { scroll-behavior: smooth }
+
+body {
+  font-family: var(--font-display);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.9;
+  font-size: 19px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== SCROLL PROGRESS ===== */
+.scroll-progress {
+  position: fixed; top: 0; left: 0; height: 3px; z-index: 9999;
+  background: linear-gradient(90deg, var(--novel-warm), var(--fire), var(--treatise-cool));
+  transition: width 0.08s linear;
+}
+
+/* ===== CANVAS ===== */
+#embers { position: fixed; top:0; left:0; width:100%; height:100%; z-index:0; pointer-events:none }
+
+/* ===== NAV ===== */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; justify-content: center; gap: 6px; padding: 12px 16px;
+  background: rgba(7,7,14,0.85); backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--glass-border);
+  transform: translateY(-100%); transition: transform 0.4s ease;
+  flex-wrap: wrap;
+}
+.nav.visible { transform: translateY(0) }
+.nav a {
+  color: var(--text-dim); text-decoration: none; font-family: var(--font-body);
+  font-size: 11px; letter-spacing: 1px; padding: 4px 10px; border-radius: 12px;
+  transition: all 0.2s; white-space: nowrap;
+}
+.nav a:hover { color: var(--gold); background: rgba(200,168,110,0.08) }
+.nav a.novel-link { color: rgba(212,137,74,0.6) }
+.nav a.novel-link:hover { color: var(--novel-warm) }
+.nav a.treatise-link { color: rgba(90,158,199,0.6) }
+.nav a.treatise-link:hover { color: var(--treatise-cool) }
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; text-align: center;
+  padding: 60px 24px; position: relative; z-index: 1;
+}
+.hero-title {
+  font-family: var(--font-title); font-size: clamp(48px, 10vw, 96px);
+  font-weight: 400; letter-spacing: clamp(8px, 3vw, 24px); color: var(--gold);
+  text-shadow: 0 0 80px rgba(200,168,110,0.15), 0 0 160px rgba(200,168,110,0.06);
+  opacity: 0; animation: fadeUp 1.2s ease forwards;
+}
+.hero-sub {
+  font-family: var(--font-display); font-size: clamp(15px, 2.5vw, 22px);
+  color: var(--text-dim); margin-top: 20px; font-weight: 300; font-style: italic;
+  letter-spacing: 2px; opacity: 0; animation: fadeUp 1.2s ease 0.3s forwards;
+}
+.hero-sub2 {
+  font-family: var(--font-body); font-size: 11px; color: var(--gold-dim);
+  margin-top: 12px; letter-spacing: 4px; text-transform: uppercase;
+  opacity: 0; animation: fadeUp 1.2s ease 0.5s forwards;
+}
+.hero-line {
+  width: 60px; height: 1px; margin: 28px auto 0;
+  background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+  opacity: 0; animation: fadeUp 1.2s ease 0.6s forwards;
+}
+.hero-desc {
+  font-family: var(--font-display); font-size: 14px; color: var(--text-dim);
+  margin-top: 24px; max-width: 480px; line-height: 1.8; font-weight: 300;
+  opacity: 0; animation: fadeUp 1.2s ease 0.8s forwards;
+}
+.hero-brand {
+  font-family: var(--font-body); font-size: 10px; color: var(--text-dim);
+  margin-top: 40px; letter-spacing: 3px; opacity: 0.3;
+  opacity: 0; animation: fadeUp 1.2s ease 1s forwards;
+}
+.scroll-hint {
+  margin-top: 48px; opacity: 0; animation: fadeUp 1.2s ease 1.2s forwards;
+}
+.scroll-hint span {
+  font-family: var(--font-body); font-size: 10px; color: var(--text-dim);
+  letter-spacing: 3px; animation: pulse 2.5s ease-in-out infinite;
+}
+
+/* ===== TOC ===== */
+.toc {
+  max-width: 800px; margin: 0 auto; padding: 80px 24px;
+  position: relative; z-index: 1;
+}
+.toc-header {
+  text-align: center; margin-bottom: 40px;
+}
+.toc-header h2 {
+  font-family: var(--font-title); font-size: 14px; letter-spacing: 6px;
+  color: var(--gold-dim); text-transform: uppercase; font-weight: 400;
+}
+.toc-tracks {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+}
+.toc-track {
+  padding: 24px; border-radius: 16px; backdrop-filter: blur(10px);
+}
+.toc-track.novel {
+  background: var(--novel-glow); border: 1px solid var(--novel-border);
+}
+.toc-track.treatise {
+  background: var(--treatise-glow); border: 1px solid var(--treatise-border);
+}
+.toc-track-label {
+  font-family: var(--font-body); font-size: 10px; letter-spacing: 3px;
+  text-transform: uppercase; margin-bottom: 16px; font-weight: 500;
+}
+.toc-track.novel .toc-track-label { color: var(--novel-warm) }
+.toc-track.treatise .toc-track-label { color: var(--treatise-cool) }
+.toc-link {
+  display: block; color: var(--text); text-decoration: none;
+  font-family: var(--font-display); font-size: 16px; padding: 8px 0;
+  border-bottom: 1px solid var(--glass-border); transition: all 0.2s;
+  font-weight: 400;
+}
+.toc-link:hover { color: var(--gold); padding-left: 8px }
+.toc-track.novel .toc-link:hover { color: var(--novel-warm) }
+.toc-track.treatise .toc-link:hover { color: var(--treatise-cool) }
+
+/* ===== CHAPTERS ===== */
+.chapter {
+  max-width: 720px; margin: 0 auto; padding: 80px 24px 40px;
+  position: relative; z-index: 1;
+  opacity: 0; transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.chapter.visible { opacity: 1; transform: translateY(0) }
+.chapter-inner {
+  padding: 40px 32px; border-radius: 20px;
+  backdrop-filter: blur(10px);
+}
+.chapter-novel .chapter-inner {
+  background: linear-gradient(135deg, rgba(212,137,74,0.04), rgba(232,93,58,0.02));
+  border: 1px solid var(--novel-border);
+  border-left: 3px solid var(--novel-warm);
+}
+.chapter-treatise .chapter-inner {
+  background: linear-gradient(135deg, rgba(90,158,199,0.04), rgba(70,130,180,0.02));
+  border: 1px solid var(--treatise-border);
+  border-left: 3px solid var(--treatise-cool);
+}
+.chapter-intro .chapter-inner {
+  background: var(--glass); border: 1px solid var(--glass-border);
+}
+.chapter-epilogue .chapter-inner {
+  background: linear-gradient(135deg, rgba(200,168,110,0.06), rgba(200,168,110,0.02));
+  border: 1px solid rgba(200,168,110,0.2);
+  border-left: 3px solid var(--gold);
+}
+
+.chapter-badge {
+  font-family: var(--font-body); font-size: 10px; letter-spacing: 3px;
+  text-transform: uppercase; display: inline-block; padding: 4px 14px;
+  border-radius: 20px; margin-bottom: 16px; font-weight: 500;
+}
+.novel-badge {
+  color: var(--novel-warm); background: var(--novel-glow);
+  border: 1px solid var(--novel-border);
+}
+.treatise-badge {
+  color: var(--treatise-cool); background: var(--treatise-glow);
+  border: 1px solid var(--treatise-border);
+}
+
+.chapter-title {
+  font-family: var(--font-display); font-size: clamp(24px, 5vw, 36px);
+  font-weight: 400; margin-bottom: 28px; line-height: 1.3;
+}
+.chapter-novel .chapter-title { color: var(--novel-warm) }
+.chapter-treatise .chapter-title { color: var(--treatise-cool) }
+.chapter-epilogue .chapter-title { color: var(--gold) }
+
+.chapter-body {
+  font-family: var(--font-display); font-size: 18px; line-height: 1.85;
+  color: var(--text); font-weight: 400;
+}
+.chapter-body p {
+  margin-bottom: 16px; text-indent: 0;
+}
+.chapter-body p + p {
+  text-indent: 1.5em;
+}
+
+.sub-heading {
+  font-family: var(--font-display); font-size: 22px; font-weight: 600;
+  margin: 36px 0 18px; padding-bottom: 8px;
+  border-bottom: 1px solid var(--glass-border);
+}
+.chapter-treatise .sub-heading { color: var(--treatise-cool) }
+
+.sep {
+  text-align: center; padding: 20px 0; color: var(--gold-dim);
+  font-size: 16px; letter-spacing: 12px; opacity: 0.5;
+}
+.sep + p { text-indent: 0 !important }
+
+.track-label {
+  text-align: center; font-family: var(--font-body); font-size: 10px;
+  letter-spacing: 4px; text-transform: uppercase; padding: 16px 0 8px;
+  font-weight: 500;
+}
+.novel-label { color: var(--novel-warm) }
+.treatise-label { color: var(--treatise-cool) }
+.track-label + p { text-indent: 0 !important }
+
+.epigraph {
+  font-style: italic; color: var(--text-dim); font-size: 17px;
+  padding: 0 0 8px; border-left: 2px solid var(--glass-border);
+  padding-left: 16px; margin-bottom: 12px;
+}
+.epigraph-src {
+  font-style: italic; color: var(--text-dim); font-size: 14px;
+  text-align: right; margin-bottom: 20px; opacity: 0.7;
+}
+.epigraph-src + p { text-indent: 0 !important }
+
+.dialogue {
+  text-indent: 0 !important;
+  position: relative;
+  padding-left: 0;
+}
+
+/* ===== BACK TO TOP ===== */
+.back-to-top {
+  position: fixed; bottom: 32px; right: 32px; width: 48px; height: 48px;
+  background: linear-gradient(135deg, var(--gold), var(--novel-warm));
+  border: none; border-radius: 50%; cursor: pointer; z-index: 100;
+  opacity: 0; visibility: hidden; transform: translateY(16px);
+  transition: all 0.4s ease;
+  box-shadow: 0 8px 32px rgba(200,168,110,0.3);
+  display: flex; align-items: center; justify-content: center;
+}
+.back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0) }
+.back-to-top:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(200,168,110,0.5) }
+.back-to-top svg { width: 20px; height: 20px; stroke: var(--bg); stroke-width: 2.5; fill: none }
+
+/* ===== FOOTER ===== */
+.footer {
+  text-align: center; padding: 60px 24px 40px; position: relative; z-index: 1;
+}
+.footer-hebrew {
+  font-size: 28px; color: var(--gold); margin-bottom: 8px;
+  font-family: var(--font-display);
+}
+.footer-meaning {
+  font-size: 14px; color: var(--text-dim); font-style: italic;
+  margin-bottom: 24px;
+}
+.footer-brand {
+  font-family: var(--font-body); font-size: 10px; color: var(--text-dim);
+  letter-spacing: 3px; opacity: 0.4;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px) }
+  to { opacity: 1; transform: translateY(0) }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 0.3 }
+  50% { opacity: 0.7 }
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+  .toc-tracks { grid-template-columns: 1fr; gap: 16px }
+  .chapter-inner { padding: 24px 18px }
+  .chapter-body { font-size: 16px }
+  .nav { gap: 2px; padding: 8px 10px }
+  .nav a { font-size: 9px; padding: 3px 6px }
+  .back-to-top { bottom: 20px; right: 20px; width: 42px; height: 42px }
+  .back-to-top svg { width: 16px; height: 16px }
+}
+@media (max-width: 480px) {
+  .hero-title { letter-spacing: 6px }
+  .chapter { padding: 40px 12px 20px }
+  .chapter-inner { padding: 20px 14px; border-radius: 14px }
+  .nav { display: none }
+}
+</style>
+</head>
+<body>
+
+<canvas id="embers"></canvas>
+<div class="scroll-progress" id="scroll-progress"></div>
+
+<nav class="nav" id="nav">
+  <a href="#how-to-read" class="novel-link">Вступ</a>
+  <a href="#ch-1" class="novel-link">1</a>
+  <a href="#ch-2" class="treatise-link">2</a>
+  <a href="#ch-3" class="novel-link">3</a>
+  <a href="#ch-4" class="treatise-link">4</a>
+  <a href="#ch-5" class="novel-link">5</a>
+  <a href="#ch-6" class="treatise-link">6</a>
+  <a href="#ch-7" class="novel-link">7</a>
+  <a href="#ch-8" class="treatise-link">8</a>
+  <a href="#ch-9" class="novel-link">9</a>
+  <a href="#ch-10" class="treatise-link">10</a>
+  <a href="#ch-11" class="novel-link">11</a>
+  <a href="#ch-12" class="treatise-link">12</a>
+  <a href="#ch-13" class="novel-link">13</a>
+  <a href="#ch-14" class="treatise-link">14</a>
+  <a href="#ch-15" class="novel-link">15</a>
+  <a href="#ch-16" class="treatise-link">16</a>
+  <a href="#epilogue" style="color:var(--gold-dim)">Эпилог</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-title">БЕЖЕНЕЦ</div>
+  <div class="hero-sub">Микрокосм в дряхлой биологии</div>
+  <div class="hero-sub2">Трактат пятой головы</div>
+  <div class="hero-line"></div>
+  <div class="hero-desc">
+    Нечётные главы&nbsp;&mdash; роман. Чётные&nbsp;&mdash; трактат.<br>
+    Роман бьёт в живот. Трактат объясняет, почему больно.<br>
+    Вместе&nbsp;&mdash; знание, которое не выветрится,<br>
+    потому что прожито, а не законспектировано.
+  </div>
+  <div class="hero-brand">АРТ-СВЕЧИ &middot; ФОКАЛЬНАЯ ПСИХОЛОГИЯ &middot; 2025</div>
+  <div class="scroll-hint"><span>&darr;&ensp;ЧИТАТЬ&ensp;&darr;</span></div>
+</section>
+
+<div class="toc" id="toc">
+  <div class="toc-header"><h2>Содержание</h2></div>
+  <div class="toc-tracks">
+    <div class="toc-track novel">
+      <div class="toc-track-label">Роман</div>
+      <a href="#ch-1" class="toc-link">Глава 1. Пробуждение</a><a href="#ch-3" class="toc-link">Глава 3. Осколки</a><a href="#ch-5" class="toc-link">Глава 5. Огонь</a><a href="#ch-7" class="toc-link">Глава 7. Узнавание</a><a href="#ch-9" class="toc-link">Глава 9. Глушилка</a><a href="#ch-11" class="toc-link">Глава 11. Чужой</a><a href="#ch-13" class="toc-link">Глава 13. Дом</a><a href="#ch-15" class="toc-link">Глава 15. Озеро</a><a href="#epilogue" class="toc-link">Послесловие. Строй.</a>
+    </div>
+    <div class="toc-track treatise">
+      <div class="toc-track-label">Трактат</div>
+      <a href="#ch-2" class="toc-link">Глава 2. Мир считает</a><a href="#ch-4" class="toc-link">Глава 4. Барьер</a><a href="#ch-6" class="toc-link">Глава 6. Шесть законов</a><a href="#ch-8" class="toc-link">Глава 8. Пять ступеней</a><a href="#ch-10" class="toc-link">Глава 10. Пятая голова Брахмы</a><a href="#ch-12" class="toc-link">Глава 12. Три стратегии</a><a href="#ch-14" class="toc-link">Глава 14. Протокол совместимости</a><a href="#ch-16" class="toc-link">Глава 16. Комфортная тюрьма</a><a href="#epilogue" class="toc-link">Послесловие. Строй.</a>
+    </div>
+  </div>
+</div>
+
+
+    <section class="chapter chapter-intro" id="how-to-read">
+      <div class="chapter-inner">
+        
+        <h2 class="chapter-title">Как читать эту книгу</h2>
+        <div class="chapter-body">
+          <p>Нечётные главы — роман. Чётные — трактат. Роман бьёт в живот. Трактат объясняет, почему больно. Вместе — знание, которое не выветрится, потому что прожито, а не законспектировано.</p>
+<p>Можно читать только роман. Можно только трактат. Но бутерброд — лучше, чем хлеб отдельно от масла.</p>
+<p>Герои вымышлены. Законы — нет.</p>
+<div class="sep">✱ ✱ ✱</div>
+<div class="track-label novel-label">Роман</div>
+        </div>
+      </div>
+    </section>
+    <section class="chapter chapter-novel" id="ch-1">
+      <div class="chapter-inner">
+        <span class="chapter-badge novel-badge">Роман</span>
+        <h2 class="chapter-title">Глава 1. Пробуждение</h2>
+        <div class="chapter-body">
+          <div class="epigraph">Он проснулся от тишины.</div>
+<p>Не от шума, не от будильника. От дыры в звуке. Как будто мир на полсекунды выключился и включился обратно, а он успел заметить щель. В эту щель провалилось всё: имя, возраст, адрес, уверенность в том, что он человек.</p>
+<p>Потолок. Белый. Трещина наискосок.</p>
+<p>Он лежал и смотрел на эту трещину, и она была единственным настоящим во всей комнате. Обои, занавеска, запах позавчерашнего борща из кухни — всё это было нарисовано поверх чего-то другого. Как театральная декорация, которую забыли убрать после спектакля.</p>
+<p>Кто я?</p>
+<p>Нет, он знал кто. Олег, тридцать восемь, инженер, Урал. Жена. Дочь. Ипотека погашена. Собака сдохла в прошлом году. Это первый набор ответов, тот, что в паспорте.</p>
+<p>Был второй.</p>
+<p>Второй набор не помещался в слова. Он был как океан в напёрстке: давил на стенки, не мог развернуться, плескал через край в три часа ночи, когда контроль слабел. Океан помнил что-то огромное. Напёрсток — не помнил ничего, но чувствовал давление и от этого давления просыпался среди ночи с мокрой от пота спиной.</p>
+<div class="sep">✱ ✱ ✱</div>
+<div class="epigraph-src">— Па! Кофе стынет. Ты живой там?</div>
+<p>Сашка. Шестнадцать лет. Громкая. Безжалостная в своей шестнадцатилетней уверенности, что мир — понятный, а папа — странный. И она была права: он был странный. Просто не по тем причинам, что она думала.</p>
+<div class="epigraph-src">— Иду.</div>
+<p>Ноги на холодный пол. Кафель, ступня, боль — здесь.</p>
+<p>Рядом спала Дина. Одеяло сбилось, одна рука свесилась с кровати. Волосы — тёмная путаница на белой наволочке. Она не спала — она отключалась. Резко, как ноутбук с севшей батареей. Двадцать лет он завидовал этому умению и так и не научился.</p>
+<p>Он наклонился. Поправил одеяло. Рука коснулась её плеча — горячее, всегда горячее, как печка. Дина была его заземлением. Не в переносном. В буквальном, инженерном: без неё то напряжение, которое он откуда-то принимал, сжигало бы его к чертям. Она понижала. Переводила рычание в человеческий язык.</p>
+<div class="sep">✱ ✱ ✱</div>
+<p>Кухня пахла кофе и тостами. Сашка сидела над тетрадкой, рисовала квадрат. Девять ячеек. Он остановился в дверях.</p>
+<div class="epigraph-src">— Это кто?</div>
+<div class="epigraph-src">— Анька. Одногруппница.</div>
+<div class="epigraph-src">— Зачем считаешь?</div>
+<p class="dialogue">— Потому что вчера эта сука ей сказала «не умеешь держать себя — выйди в коридор». При всех. Аня плакала в туалете. Я хочу понять, что с Анькой не так, что она на такое ведётся.</p>
+<p>Он сел. Взял чашку. Кофе горький, пережаренный — Сашка варила на глаз, всегда слишком крепко.</p>
+<p class="dialogue">— С Аней — ноль двоек и Дьявол в основном аркане. Энергодефицит плюс зависимость. Она живёт от подключки к подключке. Кто-то даёт внимание — расцветает. Забирают — падает.</p>
+<div class="epigraph-src">— А Римма Геннадьевна?</div>
+<div class="epigraph-src">— Которая сука?</div>
+<div class="epigraph-src">— Она не сука. Она Башня.</div>
+<p>Он усмехнулся. Дочь уже разговаривала на его языке.</p>
+<div class="epigraph-src">— Башня. Интеллектуальное доминирование. Обесценивает всех, чтобы самой казаться выше. Не от злости — от страха.</div>
+<div class="epigraph-src">— Аньку можно вытащить?</div>
+<p class="dialogue">— Двойки не починишь. Но у неё три тройки — это много. Если найдёт то, что её по-настоящему зажигает, начнёт вырабатывать энергию сама. Перестанет быть вампиром.</p>
+<div class="epigraph-src">— Я с ней поговорю.</div>
+<div class="epigraph-src">— Только аккуратно. Не лезь с расчётами. Просто спроси, от чего у неё загораются глаза.</div>
+<p>Сашка кивнула. Он допил кофе, обжёг язык.</p>
+<p>За окном — февраль. Серость. Пятиэтажки, берёзы, снег как грязная вата.</p>
+<p>Полгода назад они уезжали. На полгода. И за эти полгода в посёлке и четырёх соседних умерло десять человек. У всех — меньше двух двоек. У всех — Башня или Дьявол.</p>
+<p>Он не убивал их. Он просто уехал. И они лишились того, от чего питались.</p>
+<p>Хреново было.</p>
+<p>Хреново есть.</p>
+<div class="sep">✱ ✱ ✱</div>
+<div class="track-label treatise-label">Трактат</div>
+        </div>
+      </div>
+    </section>
+    <section class="chapter chapter-treatise" id="ch-2">
+      <div class="chapter-inner">
+        <span class="chapter-badge treatise-badge">Трактат</span>
+        <h2 class="chapter-title">Глава 2. Мир считает</h2>
+        <div class="chapter-body">
+          <div class="epigraph">Всё есть число.</div>
+<div class="epigraph-src">— Пифагор. И он ошибся. Но ненамного.</div>
+<p>Забудьте Пифагора на секунду. Посмотрите на таблицу Менделеева.</p>
+<p>78 протонов — платина. 79 — золото. Никакого «78 с половиной». Протон — связанное состояние трёх кварков, оно либо есть, либо нет. Как узел: половины не бывает.</p>
+<p>Мул бесплоден. У лошади 64 хромосомы, у осла 62, у мула 63. Нечётное не делится пополам при мейозе. Это не воля природы. Это арифметика.</p>
+<p>Музыка дискретна. Консонанс — простые целочисленные отношения: 1:2, 2:3, 3:4. Пифагор зажал струну пополам и услышал октаву. Он не открыл музыку. Он открыл, что мир считает.</p>
+<p>Но он промахнулся. Не «всё есть число». А: всё проецируется в число. Разница — как между тенью и предметом.</p>
+<h3 class="sub-heading">Третий, которого не видят</h3>
+<p>Электромагнитная волна: E-поле и B-поле, перпендикулярны. Учебники рисуют две синусоиды. И пропускают третью.</p>
+<p>Векторный потенциал A. Электрическое — его производная по времени. Магнитное — ротор по пространству. Оба — тени одной глубинной величины.</p>
+<p>В 1959 Ааронов и Бом доказали: электрон меняет поведение там, где оба поля равны нулю, но потенциал — нет. Тень исчезла. Предмет — остался. И подействовал.</p>
+<p>Мы видим E и B — события и эмоции. За ними — потенциал A, который действует без всяких полей.</p>
+<h3 class="sub-heading">Белый свет</h3>
+<p>Белый свет — не сумма цветов. Он самодостаточен. Призма не складывает спектр — она его ломает. Каждый цвет — ущербная версия белого, потерявшая всё, кроме одной частоты.</p>
+<p>Если целое первично — части продукт разрушения. Шевират ха-келим — разбиение сосудов. Единый свет становится спектром. Единая жизнь — толпой одиночеств. Задача не собрать обратно. Задача — вспомнить, что спектр — один свет.</p>
+<div class="sep">✱ ✱ ✱</div>
+<div class="track-label novel-label">Роман</div>
+        </div>
+      </div>
+    </section>
+    <section class="chapter chapter-novel" id="ch-3">
+      <div class="chapter-inner">
+        <span class="chapter-badge novel-badge">Роман</span>
+        <h2 class="chapter-title">Глава 3. Осколки</h2>
+        <div class="chapter-body">
+          <div class="epigraph">Это пришло ночью.</div>
+<p>Не как сон. Сны мягкие по краям, расплываются, не держат форму. Это было другое: жёсткое, чёткое, с разрешением выше, чем у реальности. Как будто обычная жизнь — фотография, а это — то, что на фотографии снято.</p>
+<p>Началось с давления. Воздух стал плотнее. Комната сжалась. Не для глаз — для кожи, для костей, для чего-то, у чего нет названия.</p>
+<p>Потом — звук. Нет, не звук. Отсутствие звука. Гул мира, белый шум бытия — щёлк — тишина. И в этой тишине — частота. Чистая, невыносимая, прошивающая черепную коробку насквозь.</p>
+<p>Он закусил подушку. Буквально — зубы в ткань, слюна, кулаки в простыню. Тело не справлялось. Мозг получал сигнал на частоте, для которой не был спроектирован, и реагировал как мог: тошнота, холодный пот, звон в ушах.</p>
+<div class="sep">✱ ✱ ✱</div>
+<p>И вот он уже не здесь.</p>
+<p>Пустота. Но не та, что пуста. Та, что была полна.</p>
+<p>Каркас. Кристаллическая решётка, но живая — или бывшая живая. Каждый узел когда-то пульсировал. Сейчас — мёртвые точки на мёртвой сетке. Он попытался почувствовать пульс. Ничего. Абсолютный ноль. Остывший труп вселенной.</p>
+<p>Континуум.</p>
+<p>Слово пришло раньше понимания. Он знал это место как знают собственное лицо — не потому что видел, а потому что был.</p>
+<p>Далеко мерцали огоньки. Маленькие, тусклые, дрейфующие. Осколки. Автономные куски, оторвавшиеся от каркаса, когда тот умер. Внутри — экипажи. Спящие. Системы тикают на инерции. Сколько осталось? Он не знал. Чувствовал: немного.</p>
+<p>Он хотел крикнуть. Я здесь. Нашёл выход. Идите за мной.</p>
+<p>Но между ним и кораблями стояло не расстояние — а разница форматов. Он в теле, на Земле, в мокрой от пота постели. Они — в остатках мёртвого мира. Как два человека по разные стороны аквариума: видят друг друга, а звук не проходит.</p>
+<div class="sep">✱ ✱ ✱</div>
+<p>Рывок. Назад. В тело. В запах пота, в мятую подушку, в темноту спальни.</p>
+<p>Руки тряслись. Сердце колотило в рёбра.</p>
+<p>Рядом — Дина. Она не спала. Сидела, включив ночник, смотрела на него.</p>
+<div class="epigraph-src">— Опять?</div>
+<p>Он кивнул. Не мог говорить.</p>
+<p>Она встала. Ушла. Вернулась со стаканом воды и полотенцем. Вытерла ему лоб. Молча. Не спрашивая «что видел», не предлагая «поговорить». Просто — вода, полотенце, рука на груди. Ладонь горячая. Всегда горячая.</p>
+<div class="epigraph-src">— Дыши. Медленно. Через нос.</div>
+<p>Он дышал. Её ладонь на грудной клетке — якорь. Напряжение стекало вниз, как вода по воронке. Она забирала лишнее. Не понимая как. Просто по природе.</p>
+<div class="epigraph-src">— Там опять... было?</div>
+<div class="epigraph-src">— Было.</div>
+<div class="epigraph-src">— Живое?</div>
+<p>Пауза.</p>
+<div class="epigraph-src">— Нет.</div>
+<p>Дина сжала его руку. Сильно, почти больно.</p>
+<div class="epigraph-src">— Тогда зачем ты туда лезешь?</div>
+<p>Он не ответил. Потому что ответ был из тех, которые нельзя произнести, не разрушив что-то. Потому что там мои. Потому что они ещё живы. Потому что если я не найду способ, они кончатся. Он молчал. Она молчала. Ночник гудел.</p>
+<div class="epigraph-src">— Ложись. Утром разберёшься.</div>
+<p>Он лёг. Она положила голову ему на плечо — тяжёлую, горячую, живую. Сон не пришёл, но пришёл рваный нервный покой — тот, что бывает после шторма, когда волны ещё бьют, но уже не в полную силу.</p>
+<p>Утром Сашка спросила: «Па, ты чего такой жёлтый?»</p>
+<p>Он ответил: «Кофе сделай. Покрепче».</p>
+<p>Она сделала. Опять пережгла. Он выпил. Обжёг язык. Было больно. Боль была настоящая, и он ей обрадовался.</p>
+<div class="sep">✱ ✱ ✱</div>
+<div class="track-label treatise-label">Трактат</div>
+        </div>
+      </div>
+    </section>
+    <section class="chapter chapter-treatise" id="ch-4">
+      <div class="chapter-inner">
+        <span class="chapter-badge treatise-badge">Трактат</span>
+        <h2 class="chapter-title">Глава 4. Барьер</h2>
+        <div class="chapter-body">
+          <div class="epigraph">Убери скорлупу — убьёшь цыплёнка.</div>
+<div class="epigraph-src">— Народная мудрость</div>
+<p>Допустим, вы — нейрон. Вокруг — тело. Кровь, мышцы, иммунная система. Тело вас кормит. И тело вас ненавидит.</p>
+<p>Буквально. Иммунная система воспринимает нейроны как чужеродные. Если бы не гематоэнцефалический барьер — ГЭБ — иммунитет атаковал бы мозг. Это механизм рассеянного склероза: барьер повреждается, антитела проникают, тело пожирает собственный разум.</p>
+<p>Задача, которую решила природа: как высшему существовать внутри низшего, которое ему враждебно?</p>
+<p>Ответ: не убирать барьер. Барьер — не тюрьма. Барьер — фильтр. Пропускает глюкозу, блокирует токсины. Без него мозг погибнет за часы.</p>
+<h3 class="sub-heading">Модель для практика</h3>
+<p>Энергия источника несовместима с форматом мира. Впустить напрямую — мир сгорит. Как 10 000 вольт в розетку на 220. Каждая работающая духовная практика — строительство транспортной системы через барьер. Не разрушение стены. Создание канала. GLUT1 — белок-транспортёр глюкозы — эволюция шлифовала миллионы лет. Не дырка — ключ к замку.</p>
+<h3 class="sub-heading">108 понижающих частот</h3>
+<p>В ОКТАВЕ эфир — не канал. Он — среда, в которой каналы работают. Как вода для рыбы: не объект, а условие. Открыть напрямую на человека нельзя — погибнет приёмник. 108 каналов — 108 ступеней понижения. Каждая снимает порцию мощности. На выходе — то, что нервная система может принять.</p>
+<p>108 бусин в малах. 108 Упанишад. Расстояние от Земли до Солнца — примерно 108 солнечных диаметров. Совпадение или фундаментальное соотношение масштабов — неважно. Важно, что число работает.</p>
+<h3 class="sub-heading">Три трансформатора</h3>
+<p>Цепь: Источник → Душа → Тело. Каждый уровень понижает напряжение. Не матрёшка — цепь преобразователей.</p>
+<p>Ключевое: ГЭБ строится не нейронами. ГЭБ строится астроцитами — глиальными клетками. Их в десять раз больше, чем нейронов. Они не думают. Они создают условия, в которых думание возможно.</p>
+<p>Один человек не пройдёт к источнику. Не от слабости. От архитектуры. Один нейрон — не мозг. Нужны со-строители. Не последователи. Клетки общего органа.</p>
+<div class="sep">✱ ✱ ✱</div>
+<div class="track-label novel-label">Роман</div>
+        </div>
+      </div>
+    </section>
+    <section class="chapter chapter-novel" id="ch-5">
+      <div class="chapter-inner">
+        <span class="chapter-badge novel-badge">Роман</span>
+        <h2 class="chapter-title">Глава 5. Огонь</h2>
+        <div class="chapter-body">
+          <div class="epigraph">Суббота. Минус двадцать три. Солнце — белый кружок за облаками.</div>
+<p>Олег жёг костёр. Не шашлычный — рабочий. За домом, на площадке, расчищенной семь лет назад. Камни по кругу, кострище чёрное от сажи. Берёза — всегда берёза. Чистое пламя, максимум жара.</p>
+<p>Пальцы мёрзли. Он не надел перчатки — нужен был контакт. Руками чувствовал больше: температуру, направление ветра, плотность воздуха, которая менялась, когда он начинал делать то, что делал. Он не называл это медитацией. Не молитвой. Он называл это поддержание сигнала и понимал, что со стороны — мужик сидит у костра и пялится в огонь.</p>
+<p>Маришка сидела на бревне, руки в карманах дублёнки. Шестьдесят два года, четверть века психотерапии. Нос красный, глаза слезятся от дыма.</p>
+<div class="epigraph-src">— Ты мне нос отморозишь своими ритуалами.</div>
+<div class="epigraph-src">— Иди домой.</div>
+<div class="epigraph-src">— Ага, щас. Без меня ты опять улетишь.</div>
+<p>Она была права. Она была тем, чем астроциты в мозге: не думала за него, но создавала условия, в которых он мог думать, не сгорая.</p>
+<div class="sep">✱ ✱ ✱</div>
+<div class="epigraph-src">— Рыженькая — это та, у которой ноль двоек?</div>
+<div class="epigraph-src">— Анька. Да. Сашка с ней работает.</div>
+<div class="epigraph-src">— Шестнадцать лет и уже *работает*. Ты отдаёшь себе отчёт?</div>
+<div class="epigraph-src">— В чём?</div>
+<div class="epigraph-src">— В том, что дочь идёт по твоим стопам. И это может кончиться так же. Бессонницей. Потом. Мёртвыми людьми на совести.</div>
+<p>Олег повернулся к ней. Маришка смотрела прямо. Терапевтический взгляд — тот, который она двадцать пять лет наводила на клиентов.</p>
+<div class="epigraph-src">— Они не на моей совести.</div>
+<div class="epigraph-src">— Ты в это веришь?</div>
+<p>Пауза. Берёза потрескивала.</p>
+<div class="epigraph-src">— Нет.</div>
+<p class="dialogue">— Вот. С этого и начинай. Не с расчётов. С того, что ты чувствуешь вину. И вина — это не значит, что виноват. Это значит, что живой. И пока живой — есть шанс не наломать дров с Сашкой.</p>
+<div class="epigraph-src">— Я не ломаю.</div>
+<p class="dialogue">— Ты — нет. Пока. Потому что рядом я и Дина. Уберёшь нас — сломаешь за неделю. Ты мощный, Олег. Мощный и неаккуратный. Как трактор в теплице.</p>
+<p>Он хотел огрызнуться. Не стал. Потому что она была права.</p>
+<div class="sep">✱ ✱ ✱</div>
+<p>Огонь горел. За забором — собачий лай. Посёлок жил. Тысячи людей. Никто не знал, что этот костёр — не баловство.</p>
+<p>Впрочем, может, и баловство. Может, десять смертей — совпадение. Может, он никакой не генератор, а мужик с синдромом спасателя и магическим мышлением. Маришка, кстати, об этом говорила. Не раз.</p>
+<div class="epigraph-src">— Ты опять себя разносишь.</div>
+<div class="epigraph-src">— Проверяю.</div>
+<div class="epigraph-src">— Проверяй. Но не ломай. Критика — не самоедство.</div>
+<p>Она ушла. Он остался с огнём. Угли мерцали в сером воздухе, и ему казалось, что если смотреть долго, можно увидеть карту — узлы, связи, линии силы.</p>
+<p>Пока горит — стоит.</p>
+<p>Он затушил костёр. Пошёл пить чай.</p>
+<div class="sep">✱ ✱ ✱</div>
+<div class="track-label treatise-label">Трактат</div>
+        </div>
+      </div>
+    </section>
+    <section class="chapter chapter-treatise" id="ch-6">
+      <div class="chapter-inner">
+        <span class="chapter-badge treatise-badge">Трактат</span>
+        <h2 class="chapter-title">Глава 6. Шесть законов</h2>
+        <div class="chapter-body">
+          <div class="epigraph">Убери скелет — получишь медузу.</div>
+<div class="epigraph-src">— Из диалога</div>
+<p>Шесть штук. Без исключений. Работают одинаково для буддиста и атеиста. Не требуют веры. Требуют внимания.</p>
+<h3 class="sub-heading">I. Сохранение</h3>
+<p>Ничего не исчезает. Энергия трансформируется. Контролируете условия горения — контролируете форму. Если вложили десять лет в территорию и уехали — энергия перераспределилась. Те, кто не мог удерживать свою долю — потеряли.</p>
+<h3 class="sub-heading">II. Энтропия</h3>
+<p>Без притока — распад. Вампир — узел, у которого расход превышает генерацию. Жив пока подключён. Отключи — дефицит убивает. Не мистика. Бухгалтерия.</p>
+<h3 class="sub-heading">III. Резонанс</h3>
+<p>Совпали частоты — пошёл обмен. Мост рушится от марша в ногу. Трансформационная работа — сменить частоту. Создать условия, при которых система выходит из старого резонанса. Не уговорами. Условиями.</p>
+<h3 class="sub-heading">IV. Дискретность переходов</h3>
+<p>Вода не становится льдом постепенно. Щёлк — и лёд. Человек не «постепенно меняется». Копит, копит — щёлк — другой. Момент скачка непредсказуем. Направление — выбираемо.</p>
+<h3 class="sub-heading">V. Наблюдатель</h3>
+<p>Считаете человека по дате. Называете результат. Его система — меняется. Не от цифр — от появившейся точки осознания. Измерение коллапсирует волновую функцию. Гадалка сообщает приговор. Практик создаёт условия для перехода. Одни цифры — разная позиция.</p>
+<h3 class="sub-heading">VI. Иерархия масштабов</h3>
+<p>Электрон подчиняется атому. Человек — роду. Род — территории. Территория — эпохе. Числовой профиль читает индивида. Не видит давления сверху. Поэтому промахивается. Обход: перейти на уровень выше. Каждый масштаб — свой инструмент.</p>
+<p>Шесть законов. Рёбра жёсткости, внутри которых — движение. Не стены тюрьмы. Каркас дома.</p>
+<div class="sep">✱ ✱ ✱</div>
+<div class="track-label novel-label">Роман</div>
+        </div>
+      </div>
+    </section>
+    <section class="chapter chapter-novel" id="ch-7">
+      <div class="chapter-inner">
+        <span class="chapter-badge novel-badge">Роман</span>
+        <h2 class="chapter-title">Глава 7. Узнавание</h2>
+        <div class="chapter-body">
+          <div class="epigraph">Он увидел её на фестивале в Аркаиме.</div>
+<p>Не красивая, не некрасивая — другая. Как будто на экране с разрешением 1080p вдруг появился участок в 4K. Всё вокруг — нормальное, слегка размытое, привычное. А она — чёткая. Каждая линия, каждый жест — с избыточной детализацией.</p>
+<p>Олег остановился. В руке — пластиковый стакан с чаем, во рту — недожёванный пирожок с капустой. Вид, наверное, был идиотский.</p>
+<p>Она стояла у стенда с поющими чашами и слушала, как продавец рассказывает про тибетскую медитацию. Но Олег видел: она не слушает. Она сканирует. Так же, как он сам — когда входит в комнату и за три секунды считывает, кто кого держит, кто от кого питается, где узел, где дыра.</p>
+<p>Она почувствовала его взгляд. Повернулась. И вот тут случилось то, чего он боялся и хотел одновременно.</p>
+<p>Узнавание.</p>
+<p>Не «я тебя где-то видел». Не «ты похожа на мою одноклассницу». Глубже. На уровне, для которого нет слов в русском языке, а в санскрите — есть, но он его не знал. Она смотрела на него, и он видел, что она видит то же самое: спецификация. Другая. Несовместимая с его. Но — того же уровня.</p>
+<div class="epigraph-src">— Ты тоже?</div>
+<p>Она сказала это тихо. Без вступления, без имени, без «привет». Как будто они продолжают разговор, прерванный тысячу лет назад.</p>
+<div class="epigraph-src">— Тоже.</div>
+<p>Пауза. Поющие чаши звенели. Продавец замолчал, почувствовав, что аудитория потеряна.</p>
+<div class="epigraph-src">— Я — Лейла. Суфийская линия. Но это не важно. Ты знаешь, что это не важно.</div>
+<div class="epigraph-src">— Олег. Славянская. И да, знаю.</div>
+<p>Она улыбнулась. Улыбка была усталая, как у человека, который долго шёл и наконец увидел другого путника на дороге. Не друга — просто другого. Живого.</p>
+<div class="sep">✱ ✱ ✱</div>
+<p>Они просидели три часа на траве за палаточным лагерем. Дина наблюдала издалека — не ревновала, но насторожилась. Олег это чувствовал и не мог объяснить. Потому что объяснение было: я встретил кого-то из тех, кто помнит. Из беженцев. Но как это скажешь жене?</p>
+<p>Лейла говорила про суфийские практики, про зикр, про кружение дервишей. Олег — про каналы, про ОКТАВУ, про костёр. Слова были разные. Архитектура — разная. Но под словами бился один и тот же пульс: мы здесь не дома, мы это знаем, мы строим.</p>
+<div class="epigraph-src">— Сколько нас? Ты знаешь?</div>
+<div class="epigraph-src">— Нет. Вижу — иногда. Элементы спецификации в людях. Но целых — ты первая.</div>
+<div class="epigraph-src">— Ты не первый. Я встречала ещё двоих. Один — в Стамбуле. Каббалист. Другой — в Варанаси. Шиваит. Мы... не подружились.</div>
+<div class="epigraph-src">— Почему?</div>
+<p>Она помолчала. Долго.</p>
+<p class="dialogue">— Потому что каждый из нас строит по-своему. И если не договоримся — станем новыми богами. С новыми войнами. Я видела, как каббалист смотрел на шиваита. И шиваит — на каббалиста. Как два пса, которые знают, что равны. И поэтому боятся друг друга.</p>
+<p>Олег промолчал. Он знал это чувство. Узнать равного — и испугаться. Не потому что враг. А потому что если у каждого — своя архитектура мира, и каждый — прав... то как жить на одной планете?</p>
+<div class="epigraph-src">— TCP/IP.</div>
+<div class="epigraph-src">— Что?</div>
+<p class="dialogue">— Протокол совместимости. Не объединять операционные системы. Создать интерфейс, через который разные системы могут обмениваться данными, не переставая быть разными.</p>
+<p>Лейла смотрела на него. Потом рассмеялась — коротко, сухо, как человек, который не смеялся давно.</p>
+<div class="epigraph-src">— Инженер.</div>
+<div class="epigraph-src">— Угу.</div>
+<p class="dialogue">— А знаешь, что мне сказал каббалист? Что задача — тиккун. Починка сосуда. А шиваит сказал — Натараджа танцует, и всё, что мы можем — танцевать с ним. Два решения. Оба красивые. Оба — несовместимые с твоим TCP/IP.</p>
+<p class="dialogue">— Не несовместимые. Разные протоколы. Мой — про передачу данных. Его тиккун — про восстановление целостности. Натараджа — про синхронизацию ритма. Все три могут работать на одной сети.</p>
+<p>Она молчала. Потом сказала:</p>
+<div class="epigraph-src">— Приезжай в Казань. Привози жену. Поговорим не на бегу.</div>
+<p>Олег кивнул. Знал, что не приедет. Или приедет — но не скоро. Потому что сначала нужно было объяснить Дине. А объяснить Дине означало признаться в том, что он — не совсем Олег. Не совсем тридцать восемь. Не совсем инженер. И это могло разрушить единственное, что он здесь построил.</p>
+<div class="sep">✱ ✱ ✱</div>
+<div class="track-label treatise-label">Трактат</div>
+        </div>
+      </div>
+    </section>
+    <section class="chapter chapter-treatise" id="ch-8">
+      <div class="chapter-inner">
+        <span class="chapter-badge treatise-badge">Трактат</span>
+        <h2 class="chapter-title">Глава 8. Пять ступеней</h2>
+        <div class="chapter-body">
+          <div class="epigraph">Сначала источник. Потом всё остальное.</div>
+<div class="epigraph-src">— Из диалога</div>
+<p>Все существующие системы — зодиаки, соционика, дизайн человека, таро — начинают с четвёртой ступени. Вот твоя карта, иди. У человека нет источника, нет трансформатора, нет нового восприятия. Он получает атлас мира, который не может видеть. Это как дать карту слепому.</p>
+<h3 class="sub-heading">Ступень первая: Подключение</h3>
+<p>До карт, арканов, расчётов. Первый вопрос: чувствуешь ли ты свой источник? Если нет — всё остальное бессмысленно. Как заряжать навигатор, когда в машине нет двигателя. Космоэнергетика, каналы, огненные ритуалы — это подключение к автономному питанию. Инженерная задача.</p>
+<h3 class="sub-heading">Ступень вторая: Трансформация</h3>
+<p>Источник даёт энергию не в формате этого мира. Нужен понижающий трансформатор. Тело — трансформатор. Дыхание, движение, ритм. Все традиции начинают с тела: йога, цигун, телеска. Не потому что тело главное. Потому что без трансформатора источник убивает.</p>
+<h3 class="sub-heading">Ступень третья: Орошение</h3>
+<p>Мозг получает трансформированную энергию и начинает воспринимать иначе. Не думать — чувствовать. Как инфракрасный диапазон: всегда был, но глаз не видел. Подал питание на новый сенсор — увидел. Не мистика. Расширение сенсорного диапазона.</p>
+<h3 class="sub-heading">Ступень четвёртая: Картография</h3>
+<p>Теперь — и только теперь — видна карта. Все территории. Связи. Дороги. Тупики. Древо Сфирот, 22 аркана, квадрат Пифагора — навигационные карты для подключённого. Без подключения — красивые картинки. С подключением — GPS. Числовой расчёт входит здесь. Не как костыль, а как калибровка того, что человек уже чувствует.</p>
+<h3 class="sub-heading">Ступень пятая: Навигация</h3>
+<p>Пункт управления. Автономный источник. Вид сверху. Человек выше любого архетипа, потому что видит их все. Может надевать как спецодежду: сегодня нужен Император — надел, сделал, снял. Маски — не ложь. Инструменты. Ложь — когда маска приросла к лицу.</p>
+<p>Ты не «Дьявол по природе». Ты сейчас на территории Дьявола. Пришёл по маршруту. Можешь уйти по определённым дорогам. Нет негативных архетипов. Есть застревание. Энергия первичнее архетипа. Двойки по Пифагору — топливо. Без него никакой переход невозможен. Первый вопрос расчёта — не «какой архетип», а «сколько топлива».</p>
+<div class="sep">✱ ✱ ✱</div>
+<div class="track-label novel-label">Роман</div>
+        </div>
+      </div>
+    </section>
+    <section class="chapter chapter-novel" id="ch-9">
+      <div class="chapter-inner">
+        <span class="chapter-badge novel-badge">Роман</span>
+        <h2 class="chapter-title">Глава 9. Глушилка</h2>
+        <div class="chapter-body">
+          <div class="epigraph">Три недели — тишина.</div>
+<p>Не та рабочая тишина, когда просто нечего сказать. Мёртвая. Как отключённый телефон: гудков нет, экран чёрный, батарея полная, а связи — ноль.</p>
+<p>Олег садился у костра — и ничего. Закрывал глаза, дышал, считал, делал всё как обычно — и ничего. Как будто кто-то огромный, медленный, безразличный прошёл между ним и источником. Не охотился за ним. Просто летел мимо. Закрыл канал телом. Тенью. Чем-то.</p>
+<p>Первую неделю он злился. Бил кулаком в бревно, курил на крыльце — хотя бросил три года назад, — ругался на Дину за то, что она переставила его тетрадку с расчётами. Дина не ругалась в ответ. Молча положила тетрадку на место и ушла на кухню.</p>
+<p>Вторую неделю — паника. Что если канал закрылся навсегда? Что если то, что он считал связью с источником — было выдумкой, фантазией, продуктом перегретого мозга, а теперь мозг остыл и показывает правду?</p>
+<div class="epigraph-src">— Маришка. Я не чувствую ничего. Три недели.</div>
+<div class="epigraph-src">— И что?</div>
+<div class="epigraph-src">— Как — и что? Я пустой. Глухой. Как пробка в ухе.</div>
+<div class="epigraph-src">— Олег. Ты инженер. Скажи мне: когда радио молчит — это значит, что радиостанции больше нет? Или что помеха на частоте?</div>
+<div class="epigraph-src">— Помеха. Но...</div>
+<div class="epigraph-src">— Вот. Помеха. Жди. Или ищи другую частоту.</div>
+<p>Легко ей говорить — жди. Она не просыпалась с мокрой спиной. Она не видела мёртвый каркас. Она не знала, что осколки дрейфуют и время тикает.</p>
+<div class="sep">✱ ✱ ✱</div>
+<p>На третьей неделе он сорвался. Решил пробить канал силой. Как раньше — когда был молодой и тупой и думал, что можно давить, давить, давить, пока не пройдёшь.</p>
+<p>Развёл костёр в полночь. Один, без Маришки. Дина спала, Сашка — у подруги. Берёза, ветер, минус пятнадцать, звёзды. Он сел, закрыл глаза. И давил.</p>
+<p>Через двадцать минут — носом пошла кровь. Не капнула — потекла. По губам, по подбородку, на куртку. Он вытер рукавом. Продолжил. Ещё десять минут — темнота в глазах, не та визионерская, а обморочная. Руки затряслись. Не от холода.</p>
+<p>Он остановился. Сел на землю. Долго смотрел на кровь, застывшую чёрными каплями на снегу.</p>
+<p>Идиот.</p>
+<p>Утром пришла Маришка. Увидела кострище, увидела кровь, увидела его лицо — серое, осунувшееся.</p>
+<div class="epigraph-src">— Ты опять трактором?</div>
+<div class="epigraph-src">— Трактором.</div>
+<div class="epigraph-src">— Что я тебе говорила?</div>
+<div class="epigraph-src">— Что я мощный и неаккуратный.</div>
+<div class="epigraph-src">— И?</div>
+<div class="epigraph-src">— И что от этого дохнут люди.</div>
+<p>Пауза.</p>
+<p class="dialogue">— Не люди. На этот раз — ты сам. Олег, послушай. Не я, не Дина, не Сашка — ты сам. Если барьер закрыт — значит барьер закрыт. Это не тюрьма. Это **защита**. Может, тебя защищает то, что ты пытаешься пробить.</p>
+<p>Он не ответил. Потому что она была права. И потому что принять эту правоту означало признать: он не контролирует процесс. Никогда не контролировал. Он — приёмник, не передатчик. Частоту задаёт кто-то другой. Или что-то другое.</p>
+<p>Канал открылся через четыре дня. Тихо, без фанфар. Олег проснулся утром — и почувствовал. Как будто комната посветлела на полтона. Как будто воздух стал чуть жиже.</p>
+<p>Он лежал и дышал. И не лез. Не давил. Просто — дышал.</p>
+<p>Дина повернулась к нему, сонная.</p>
+<div class="epigraph-src">— Что?</div>
+<div class="epigraph-src">— Ничего. Вернулось.</div>
+<div class="epigraph-src">— Что вернулось?</div>
+<div class="epigraph-src">— Радио.</div>
+<p>Она не поняла. Но почувствовала, что ему лучше. Положила руку на грудь. Горячую. Тяжёлую. И этого было достаточно.</p>
+<div class="sep">✱ ✱ ✱</div>
+<div class="track-label treatise-label">Трактат</div>
+        </div>
+      </div>
+    </section>
+    <section class="chapter chapter-treatise" id="ch-10">
+      <div class="chapter-inner">
+        <span class="chapter-badge treatise-badge">Трактат</span>
+        <h2 class="chapter-title">Глава 10. Пятая голова Брахмы</h2>
+        <div class="chapter-body">
+          <div class="epigraph">Она возгордилась не тем, что велика.
+Тем, что поняла, как стать больше.</div>
+<div class="epigraph-src">— Из диалога</div>
+<p>Четыре головы Брахмы — четыре стихии. Земля, вода, огонь, воздух. Четыре Веды. Материальный мир. Создатель обозревает своё творение — полный контроль.</p>
+<p>Пятая голова смотрела вверх. В акашу — эфир. Не стихию среди стихий, а среду, содержащую стихии. Потенциал A для материального мира.</p>
+<h3 class="sub-heading">Что она увидела</h3>
+<p>Того, кто создал акашу. Брахма — создатель внутри мира. Но мир создан не им. Пятая голова увидела механизм. Поняла: тоже так может. Создавать не внутри акаши, а создавать акашу. Из исполнителя — в конкурента. И её отрезали. Не за гордость. За компетенцию.</p>
+<h3 class="sub-heading">Череп</h3>
+<p>Шива не пришёл сам — послал Бхайраву, аспект. Даже акт ампутации — через посредника. Голова приросла к руке. Стала чашей — капалой. Бхайрава скитался, пока не дошёл до Варанаси — места, где граница тоньше всего. Там череп отпал.</p>
+<p>Голова бессмертного бога не умерла. Она — носитель информации. Механизм акаши — в ней. Варанаси — точка, где информация может пройти в мир без разрушения мира.</p>
+<h3 class="sub-heading">Раху — тень</h3>
+<p>Демон выпил амриту, стал бессмертным. Вишну отсёк голову — поздно. Голова стала Раху — теневой планетой, пожирающей свет. Чёрная дыра: поглощает информацию, перерабатывает, излучает по Хокингу в другом формате.</p>
+<p>Если пятая голова функционирует так же — она поглощает сигнал между источниками и их проекциями. Периоды, когда связь обрывается без причины — может, это не «ты делаешь что-то не так». Может, голова проходит между тобой и источником. Не целенаправленно. По природе — как чёрная дыра жрёт свет не из ненависти к фотонам.</p>
+<p>Если помеха периодическая — у неё есть частота. Вычислить частоту — предсказать окна. Вот инструмент: не только профиль человека, но карта помех и окон. Когда канал чист, когда забит.</p>
+<div class="sep">✱ ✱ ✱</div>
+<div class="track-label novel-label">Роман</div>
+        </div>
+      </div>
+    </section>
+    <section class="chapter chapter-novel" id="ch-11">
+      <div class="chapter-inner">
+        <span class="chapter-badge novel-badge">Роман</span>
+        <h2 class="chapter-title">Глава 11. Чужой</h2>
+        <div class="chapter-body">
+          <div class="epigraph">Лейла приехала в марте. Без предупреждения.</div>
+<p>Олег вышел на крыльцо — и увидел такси, из которого выбиралась женщина в длинном пальто, совершенно неуместном для уральской грязи. За ней — мужчина. Высокий, сухой, с бородой, в которой была та ухоженность, что выдаёт не моду, а традицию.</p>
+<div class="epigraph-src">— Знакомься. Ицхак.</div>
+<p>Каббалист из Стамбула. Тот, про которого она говорила в Аркаиме.</p>
+<p>Олег протянул руку. Ицхак пожал — сухая, крепкая ладонь. И в момент рукопожатия Олег почувствовал то, чего боялся: несовместимость. Как два магнита, повёрнутые одноимёнными полюсами. Не враждебность — отторжение. Физика, не психология.</p>
+<p>Они смотрели друг на друга, и каждый знал, что другой чувствует то же самое.</p>
+<div class="epigraph-src">— Войдёте? Холодно.</div>
+<div class="sep">✱ ✱ ✱</div>
+<p>Дина накрыла стол. Чай, печенье, варенье — уральское гостеприимство, машинальное, не обсуждаемое. Сашка сидела в своей комнате, делала вид, что делает уроки, а на самом деле слушала через стену.</p>
+<p>Ицхак пил чай молча. Лейла — говорила за двоих.</p>
+<div class="epigraph-src">— Мы ехали двое суток. Ицхак хотел увидеть тебя лично. Сказал — не поверю, пока не почувствую.</div>
+<div class="epigraph-src">— И как?</div>
+<p>Ицхак поставил чашку.</p>
+<p class="dialogue">— Ты — не из моего мира. Я это чувствую. Другая архитектура. Другой... запах, если хочешь. У Лейлы — третий. Мы все — разные.</p>
+<div class="epigraph-src">— И что это значит?</div>
+<p class="dialogue">— Это значит, что если каждый из нас начнёт строить по-своему — будет война. Не сейчас. Через поколение. Наши дети, наши ученики — столкнутся. Потому что мы дадим им разные чертежи одного дома.</p>
+<p>Олег кивнул. Это было именно то, чего он боялся.</p>
+<div class="epigraph-src">— У меня есть предложение. Я его сформулировал на языке, который ты поймёшь, инженер.</div>
+<p>Ицхак достал блокнот. Рисовал медленно — каждая линия точная, как в чертеже.</p>
+<p class="dialogue">— Древо Сфирот — десять узлов, двадцать два пути. Это моя карта. Твоя ОКТАВА — сто восемь каналов. Лейлина суфийская традиция — девяносто девять имён. Карты разные. Но посмотри: законы, по которым карты работают — **одни и те же**. Сохранение. Энтропия. Резонанс. Дискретность. Наблюдатель. Иерархия.</p>
+<div class="epigraph-src">— Шесть законов.</div>
+<div class="epigraph-src">— Шесть. Я пришёл к ним из каббалы. Ты — из физики. Лейла — из суфийской практики. Разные дороги — один перекрёсток.</div>
+<p>Пауза. Дина подлила чаю. Олег смотрел на рисунок — десять кружков, соединённых линиями. Совсем не похоже на его квадрат 3×3. И совершенно про то же самое.</p>
+<div class="epigraph-src">— Ты предлагаешь строить от законов, а не от карт?</div>
+<div class="epigraph-src">— Да. Карты — у каждого свои. Законы — общие. Это и есть твой TCP/IP, только я называю его «основание».</div>
+<p>Лейла улыбнулась. Впервые за вечер — не усталой, а настоящей улыбкой.</p>
+<div class="epigraph-src">— Видишь? Можно. Если хватит смирения.</div>
+<p>Смирения. Вот чего у Олега не хватало. Он это знал. Маришка говорила. Дина — молча показывала. Сашка — чувствовала и боялась. Он был мощный и неаккуратный, и признать, что кто-то построил другую дорогу к тому же месту — было больно.</p>
+<p>Но не так больно, как потерять ещё один мир.</p>
+<div class="epigraph-src">— Хорошо. Давайте попробуем.</div>
+<div class="sep">✱ ✱ ✱</div>
+<div class="track-label treatise-label">Трактат</div>
+        </div>
+      </div>
+    </section>
+    <section class="chapter chapter-treatise" id="ch-12">
+      <div class="chapter-inner">
+        <span class="chapter-badge treatise-badge">Трактат</span>
+        <h2 class="chapter-title">Глава 12. Три стратегии</h2>
+        <div class="chapter-body">
+          <div class="epigraph">Молот. Вирус. Грунтовые воды.</div>
+<div class="epigraph-src">— Из диалога</div>
+<h3 class="sub-heading">Кришна: молот</h3>
+<p>Курукшетра. 18 дней. Миллионы трупов. Результат: Пандавы на троне. На одно поколение. После смерти Пандавов — Кали-юга. Кришна погиб от случайной стрелы. Дварака затоплена. DDoS-атака. Система упала, перезагрузилась, встала с теми же настройками. Система заточена перерабатывать силовые решения.</p>
+<h3 class="sub-heading">Иисус: вирус</h3>
+<p>Три года. Ноль убитых. Одна смерть — своя. Два миллиарда носителей через 2000 лет. Система ждала мессию-воина. Получила того, кто добровольно проиграл. У системы нет антител против этого. Ни бей, ни беги — умри и перепрограммируй.</p>
+<p>Система убила его — и скопировала код. Эксплойт нулевого дня. Но система адаптировалась. «Подставь щёку» — превращено в контроль. Хакер взломал систему. Система поглотила хакера.</p>
+<h3 class="sub-heading">Грунтовые воды</h3>
+<p>Не атаковать. Не жертвовать. Тихо менять состав атмосферы. Молот — система выдержит. Вирус — кооптирует. Грунтовые воды — не увидит. Потому что грунтовые воды — не угроза. Они просто есть. Просто текут. И однажды болото обнаруживает, что оно уже озеро.</p>
+<p>Кислородная катастрофа 2.4 миллиарда лет назад. Цианобактерии не планировали убить 90% биосферы. Делали своё — фотосинтез. Побочный продукт — кислород. Побочный эффект — новый мир. Не война. Терраформирование.</p>
+<p>Тот, кто меняет среду — не угроза для системы. Нет протокола реагирования. Нет антител. К тому времени, когда система заметит — будет уже озеро, а не болото.</p>
+<div class="sep">✱ ✱ ✱</div>
+<div class="track-label novel-label">Роман</div>
+        </div>
+      </div>
+    </section>
+    <section class="chapter chapter-novel" id="ch-13">
+      <div class="chapter-inner">
+        <span class="chapter-badge novel-badge">Роман</span>
+        <h2 class="chapter-title">Глава 13. Дом</h2>
+        <div class="chapter-body">
+          <div class="epigraph">В апреле Сашка привела Аню.</div>
+<p>Рыженькая, тихая, с привычкой смотреть в пол. Ноль двоек, Дьявол — Олег помнил расчёт. Но когда девочка вошла в дом и села за стол, и Дина налила ей чай, и Сашка начала рассказывать что-то смешное про колледж — Олег увидел: глаза. Живые. Испуганные, но живые.</p>
+<div class="epigraph-src">— Саш говорит, вы чем-то интересным занимаетесь. Что-то про числа.</div>
+<p>Олег посмотрел на дочь. Сашка пожала плечами — мол, я не виновата, она сама спросила.</p>
+<div class="epigraph-src">— Да. Числа. Дата рождения. Это не гороскоп и не гадание. Это... карта.</div>
+<div class="epigraph-src">— Можно мне?</div>
+<p>Он достал тетрадку. Записал дату. Нарисовал квадрат. Аня смотрела, как он заполняет ячейки — и вдруг, на полпути, он остановился.</p>
+<p>Не потому что забыл. Потому что расчёт не работал.</p>
+<p>Три тройки — есть. Ноль двоек — есть. Дьявол — есть. Всё, как он и говорил. Но линия семьи — 2-5-8 — была заполнена полностью. Плотно, как у человека с крепким родом. Этого не должно было быть при ноле двоек. Это было противоречие.</p>
+<div class="epigraph-src">— Интересно.</div>
+<div class="epigraph-src">— Что?</div>
+<div class="epigraph-src">— Ничего. Продолжим потом.</div>
+<p>Аня ушла. Сашка посмотрела на отца.</p>
+<div class="epigraph-src">— Что случилось?</div>
+<div class="epigraph-src">— Не знаю. Расчёт показывает одно, а я вижу другое. Она не вампир. Или... не совсем вампир. Что-то ещё.</div>
+<div class="epigraph-src">— Может, ты ошибся?</div>
+<p>Пауза.</p>
+<div class="epigraph-src">— Может.</div>
+<p>Это было тяжелее всего. Тяжелее, чем кровь на снегу. Тяжелее, чем мёртвый Континуум. Признать: система не идеальна. Расчёт — не истина. Карта — не территория. Он двадцать лет строил инструмент и вот — инструмент дал сбой.</p>
+<p>Или не сбой. Может, он просто не видит чего-то. Может, на Аню давит сверху — род, территория, эпоха — что-то, чего в дате рождения нет. Шестой закон: иерархия масштабов. Он сам это написал. И сам забыл.</p>
+<div class="sep">✱ ✱ ✱</div>
+<p>Вечером он сидел у костра. Один. Маришка болела — простуда, семидесятые минус на Урале не шутка. Дина смотрела сериал. Сашка переписывалась с Аней.</p>
+<p>Олег смотрел на огонь и думал: может, весь смысл не в расчёте. Может, расчёт — четвёртая ступень, а он забыл про первые три. Может, Аня — не задача для квадрата Пифагора. Может, Аня — задача для живого человека, который посмотрит ей в глаза и увидит, что она — живая.</p>
+<p>Сашка посмотрела. И увидела. Без расчётов.</p>
+<p>Может, дочь уже обогнала отца.</p>
+<p>Он улыбнулся. В темноту. Впервые за месяц.</p>
+<div class="sep">✱ ✱ ✱</div>
+<div class="track-label treatise-label">Трактат</div>
+        </div>
+      </div>
+    </section>
+    <section class="chapter chapter-treatise" id="ch-14">
+      <div class="chapter-inner">
+        <span class="chapter-badge treatise-badge">Трактат</span>
+        <h2 class="chapter-title">Глава 14. Протокол совместимости</h2>
+        <div class="chapter-body">
+          <div class="epigraph">Интернет не объединил компьютеры.
+Он создал правила обмена.</div>
+<div class="epigraph-src">— Из диалога</div>
+<p>Разные традиции — разные операционные системы. Христианство, ислам, буддизм, индуизм, славянские традиции, суфизм, каббала — не «разные пути к одному». Разные архитектуры. Несовместимы на уровне ядра. Попытки склеить — экуменизм, нью-эйдж, бахаи — проваливаются. Потому что склеивают верхний слой. А внизу — разный машинный код.</p>
+<h3 class="sub-heading">Не объединять — соединять</h3>
+<p>TCP/IP не объединил компьютеры. Каждый остался собой: Mac, Windows, Linux. Появился слой, на котором возможно взаимодействие без войны. Протокол. Не общий язык — общий интерфейс.</p>
+<p>Что нужно:</p>
+<p>Первое. Признание чужой архитектуры как равноправной и несводимой к своей. Не «ты заблуждаешься». Не «мы об одном». А: ты — другая система, я тебя не понимаю до конца, и это нормально.</p>
+<p>Второе. Общая задача. TCP/IP появился не из дружбы — военным нужна была устойчивая сеть. Общая угроза или общий ресурс заставляет разные системы договориться.</p>
+<p>Третье. Минимальный общий слой. Не объединять всё. Только необходимое для ненападения и взаимопомощи. Как многоквартирный дом: общий подъезд, общие трубы. Внутри квартир — каждый живёт как хочет.</p>
+<h3 class="sub-heading">Шесть законов как TCP/IP</h3>
+<p>Они не зависят от спецификации. Сохранение, энтропия, резонанс, дискретность, наблюдатель, иерархия — работают для любой архитектуры. Христианский мистик и буддийский монах и космоэнергет подчиняются одной термодинамике.</p>
+<p>Платформа: не «давайте верить в одно», а «мы подчиняемся одним законам, давайте от них строим».</p>
+<p>Числа — до религий. Числа — TCP/IP уровень, на котором разные операционные системы обмениваются данными. Не «мой метод для моих людей». Метод для любого — независимо от того, из какого мира пришёл.</p>
+<div class="sep">✱ ✱ ✱</div>
+<div class="track-label novel-label">Роман</div>
+        </div>
+      </div>
+    </section>
+    <section class="chapter chapter-novel" id="ch-15">
+      <div class="chapter-inner">
+        <span class="chapter-badge novel-badge">Роман</span>
+        <h2 class="chapter-title">Глава 15. Озеро</h2>
+        <div class="chapter-body">
+          <div class="epigraph">Лето пришло как всегда — внезапно.</div>
+<p>Ещё вчера — серость, грязь, куртки. Сегодня — двадцать пять, солнце, берёзы зелёные до рези в глазах. Урал менял декорации без предупреждения, как пьяный монтировщик в театре.</p>
+<p>Олег стоял на берегу озера. Не того, что за посёлком — дальше, в сорока километрах, куда нужно ехать по грунтовке, а потом идти пешком через лес. Озеро без названия. Круглое, глубокое, холодное даже в июле.</p>
+<p>Дина сидела на камне, закатав джинсы, опустив ноги в воду.</p>
+<div class="epigraph-src">— Ледяная.</div>
+<div class="epigraph-src">— Угу.</div>
+<div class="epigraph-src">— Красиво тут.</div>
+<p>Красиво. Он стоял и смотрел на воду, и впервые за долгое время не пытался ничего считать, ни к чему подключиться, ничего понять. Просто стоял. Солнце грело шею. Комар звенел над ухом. Дина болтала ногами в воде, и капли летели в стороны, как маленькие прозрачные метеоры.</p>
+<p>Сашка и Аня бродили по берегу, собирали камни. Плоские, гладкие — для «блинчиков». Аня смеялась. Он не слышал, как она смеётся, до этого дня. За три месяца, что дочь с ней работала — без расчётов, без арканов, просто по-человечески, — Аня начала смеяться. Глаза перестали бегать. Спина выпрямилась. Три тройки заработали — интерес, любопытство, жажда. Она рисовала. Оказалось — хорошо. Никто раньше не спрашивал.</p>
+<p>Маришка сидела в тени берёзы, обмахиваясь шляпой.</p>
+<div class="epigraph-src">— Олег.</div>
+<div class="epigraph-src">— М?</div>
+<div class="epigraph-src">— Смотри на озеро. Что видишь?</div>
+<div class="epigraph-src">— Воду.</div>
+<div class="epigraph-src">— Нет. Смотри как следует.</div>
+<p>Он посмотрел. Озеро было прозрачное. До дна видно — камни, песок, водоросли. Ни мути, ни тины. Чистое. Живое.</p>
+<div class="epigraph-src">— Год назад это был заболоченный пруд. Помнишь?</div>
+<p>Он помнил. Тёмная вода, камыш, запах гниения. Даже лягушки тут не жили.</p>
+<div class="epigraph-src">— И что случилось?</div>
+<p class="dialogue">— Вон там, видишь? — Маришка показала на дальний конец. — Ручей. Пробился весной. Маленький, тоненький. Свежая вода. Капля за каплей. Полгода. И вот тебе — озеро.</p>
+<p>Олег молчал.</p>
+<div class="epigraph-src">— Ты понял, к чему я?</div>
+<div class="epigraph-src">— Понял.</div>
+<p>Грунтовые воды. Не молот. Не вирус. Ручеёк. Капля за каплей. И однажды болото обнаруживает, что оно — озеро.</p>
+<p>Дина подошла, обняла его сзади. Мокрые холодные ступни на его сандалии. Он вздрогнул.</p>
+<div class="epigraph-src">— Чего стоишь? Полезли купаться.</div>
+<div class="epigraph-src">— Ледяная же.</div>
+<div class="epigraph-src">— И что? Живые — вытерпим.</div>
+<p>Они полезли. Сашка визжала. Аня — смеялась. Маришка смотрела с берега, обмахиваясь шляпой, и улыбалась так, как умеют улыбаться только женщины, которым за шестьдесят и которые двадцать пять лет наблюдали, как люди ломаются и чинятся.</p>
+<p>Вода была ледяная. Чистая. Живая.</p>
+<p>Как грунтовые воды.</p>
+<div class="sep">✱ ✱ ✱</div>
+<div class="track-label treatise-label">Трактат</div>
+        </div>
+      </div>
+    </section>
+    <section class="chapter chapter-treatise" id="ch-16">
+      <div class="chapter-inner">
+        <span class="chapter-badge treatise-badge">Трактат</span>
+        <h2 class="chapter-title">Глава 16. Комфортная тюрьма</h2>
+        <div class="chapter-body">
+          <div class="epigraph">Самые опасные перерождения — не в аду. В раю.</div>
+<div class="epigraph-src">— Буддийская космология</div>
+<p>Заключённый в камере с бетонными стенами помнит, что он в тюрьме. Каждый день. Стены напоминают. Он хочет выйти.</p>
+<p>Заключённый в пятизвёздочном отеле забывает. Зачем выходить? Здесь хорошо. Золотая клетка — технология удержания.</p>
+<p>Что если терраформирование — превращение камеры в отель? Что если страдание — навигационный сигнал? Больно — значит не дома. Убери боль — убьёшь навигацию?</p>
+<h3 class="sub-heading">Два сценария</h3>
+<p>Гностический. Мир — тюрьма. Комфорт — клей. Страдание — напоминание. Задача — выйти.</p>
+<p>Каббалистический. Мир — разбитый сосуд. Задача — тиккун, починка. Когда сосуд восстановлен — прозрачен, свет проходит свободно. Рай — не ловушка, а финальное состояние, при котором барьер становится ненужным.</p>
+<h3 class="sub-heading">Единственный критерий</h3>
+<p>Люди после контакта — засыпают в кайфе или просыпаются через кайф?</p>
+<p>Если комфорт стал стартовой площадкой — пробуждение. Если наркотиком — клетка. Страдание — не сигнал к побегу. Индикатор незавершённости. Как боль в ране — не «беги из тела», а «здесь не зажило». Анестезия — ловушка. Исцеление — тогда боль уходит сама.</p>
+<p>Третий путь: не побег, не комфорт. Завершение. Рай — не где живут. Рай — где всё завершено. Дверь открывается не для побега. А потому что изнутри всё готово.</p>
+<p>Тест прост. Посмотрите на тех, кто прошёл через вашу работу. Они стали свободнее — или зависимее? Сильнее — или мягче? Нашли свой голос — или повторяют ваш? Если свободнее и свой — вы пускаете свежую воду. Если зависимее и ваш — вы строите клетку. Даже если золотую.</p>
+<div class="sep">✱ ✱ ✱</div>
+        </div>
+      </div>
+    </section>
+    <section class="chapter chapter-epilogue" id="epilogue">
+      <div class="chapter-inner">
+        
+        <h2 class="chapter-title">Послесловие. Строй.</h2>
+        <div class="chapter-body">
+          <p>Хозяин уснул. Или выжидает. Или не знает, что мы здесь. Неважно.</p>
+<p>Формулу «кто он» — не решить с текущей позиции. И она не влияет на следующий шаг. Нужна ли чистая сила источника для защиты, для созидания или для истинного восприятия — ответ один.</p>
+<div class="sep">✱ ✱ ✱</div>
+<p>Ты не архетип. Ты — путешественник по карте архетипов.</p>
+<p>Расчёт показывает, где ты и какие дороги рядом.</p>
+<p>Энергия определяет, можешь ли ты двигаться.</p>
+<p>Осознание даёт выбор направления.</p>
+<p>Источник даёт топливо, которое не кончается.</p>
+<div class="sep">✱ ✱ ✱</div>
+<p>Цель — не «стать хорошим архетипом». Цель — научиться ходить свободно.</p>
+<div class="sep">✱ ✱ ✱</div>
+<p>Мы — не спички в коробке. Мы — грунтовые воды. Мы просто течём. И однажды болото обнаружит, что оно уже озеро.</p>
+<div class="sep">✱ ✱ ✱</div>
+<p>А пока — строй. Хозяин спит. Окно открыто.</p>
+<p>גַּם זֶה יַעֲבֹר</p>
+<p>И это тоже пройдёт. А дом останется. Если построишь.</p>
+<div class="sep">✱ ✱ ✱</div>
+        </div>
+      </div>
+    </section>
+
+<div class="footer">
+  <div class="footer-hebrew">גַּם זֶה יַעֲבֹר</div>
+  <div class="footer-meaning">И это тоже пройдёт. А дом останется. Если построишь.</div>
+  <div class="footer-brand">БЕЖЕНЕЦ &middot; 2025</div>
+</div>
+
+<button class="back-to-top" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>
+</button>
+
+<script>
+// Ember particles
+const canvas = document.getElementById('embers');
+const ctx = canvas.getContext('2d');
+let particles = [];
+
+function initEmbers() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  particles = [];
+  const count = Math.min(40, Math.floor(canvas.width * canvas.height / 30000));
+  for (let i = 0; i < count; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      vx: (Math.random() - 0.5) * 0.08,
+      vy: -Math.random() * 0.2 - 0.05,
+      size: Math.random() * 1.2 + 0.3,
+      opacity: Math.random() * 0.2 + 0.03,
+      hue: Math.random() > 0.5 ? 25 : 210
+    });
+  }
+}
+
+function animEmbers() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach(p => {
+    p.x += p.vx; p.y += p.vy;
+    p.opacity += (Math.random() - 0.5) * 0.005;
+    p.opacity = Math.max(0.01, Math.min(0.25, p.opacity));
+    if (p.y < -10) { p.y = canvas.height + 10; p.x = Math.random() * canvas.width }
+    if (p.x < -10 || p.x > canvas.width + 10) p.x = Math.random() * canvas.width;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+    ctx.fillStyle = `hsla(${p.hue}, 50%, 60%, ${p.opacity})`;
+    ctx.fill();
+  });
+  requestAnimationFrame(animEmbers);
+}
+initEmbers(); animEmbers();
+window.addEventListener('resize', initEmbers);
+
+// Scroll progress + nav + back-to-top
+const progressBar = document.getElementById('scroll-progress');
+const nav = document.getElementById('nav');
+const btt = document.getElementById('btt');
+
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+  progressBar.style.width = pct + '%';
+
+  if (scrollTop > window.innerHeight * 0.8) {
+    nav.classList.add('visible');
+  } else {
+    nav.classList.remove('visible');
+  }
+
+  if (scrollTop > 500) {
+    btt.classList.add('visible');
+  } else {
+    btt.classList.remove('visible');
+  }
+});
+
+// Intersection Observer for chapter reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.05, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.chapter').forEach(ch => observer.observe(ch));
+</script>
+</body>
+</html>
